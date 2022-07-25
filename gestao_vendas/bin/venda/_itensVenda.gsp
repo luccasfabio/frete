@@ -1,9 +1,4 @@
 <div class="fieldcontain" >
-    <button type="button" 
-            class="btn btn-sm btn-info"
-            onclick="ajaxPost(this, '${createLink(action:'adicionarItem',params="[foo: 'bar', boo: 'far']" )}' , 'div-itens-venda');">
-            Adicionar Item</button>
-    
     <table>
         <thead>
             <th>Nome Produto</th>
@@ -22,6 +17,7 @@
                                 optionKey="id" 
                                 optionValue="nome" 
                                 value="${it.produto?.id}" 
+                                noSelection="${['null':'Selecione']}"
                                 onchange="ajaxPost(this,'${createLink(action:'carregarValores')}?indice=${i}','div-itens-venda');"/></td>
                     <td><g:field name="itensVenda[${i}].valorUnitario" 
                                 value="${formatNumber(number: it.valorUnitario, format: '###,###,##0.00')}" 

@@ -45,10 +45,14 @@ class VendaController {
     }
 
     def create() {
+
+        println "teste create"
         [venda: new Venda(params)]
     }
 
     def save() {
+
+        println "venda save"
         def venda = new Venda(params)
         if (!venda.save(flush: true)) {
             render(view: "create", model: [venda: venda])

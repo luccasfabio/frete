@@ -26,6 +26,9 @@ gestao_vendas
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
+			<content tag="jsEspecifico">
+			<asset:javascript src="formatacao.js"/>
+			</content>
 			<g:form action="save">
 				<fieldset class="form">
 					<g:render template="form"/>
@@ -35,9 +38,5 @@ gestao_vendas
 				</fieldset>
 			</g:form>
 		</div>
-		
-		<content tag="jsEspecifico">
-			<asset:javascript src="formatacao.js"/>
-		</content>
 	</body>
 </html>
