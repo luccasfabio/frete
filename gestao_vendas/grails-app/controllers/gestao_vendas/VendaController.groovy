@@ -45,14 +45,11 @@ class VendaController {
     }
 
     def create() {
-
-        println "teste create"
         [venda: new Venda(params)]
     }
 
     def save() {
 
-        println "venda save"
         def venda = new Venda(params)
         if (!venda.save(flush: true)) {
             render(view: "create", model: [venda: venda])
@@ -135,9 +132,11 @@ class VendaController {
 
     def removerItem(int indice){
         def venda = new Venda(params)
-
         venda.itensVenda.remove(indice)
-        render(template:"itensVenda", model:[venda:venda])   
+        def valorTotal = 0
+        venda.itensVenda.each{valorTotal = valorTotal + it.valorTotalItem}
+        venda.valorTotal = valorTotal
+        render(template:"itensVenda", model:[venda:venda,attValorTotal:true])   
     }
 
     def carregarValores(int indice){
@@ -159,9 +158,7 @@ class VendaController {
 
     def atualizarValorTotal(){
         def venda = new Venda(params)
-        println params
         venda.valorTotal = new BigDecimal(params.get("aux"))
-
         render(template:"valorTotal",model:[venda:venda])
     }
 }

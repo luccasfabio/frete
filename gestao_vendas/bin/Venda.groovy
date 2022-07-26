@@ -13,4 +13,8 @@ class Venda {
         valorTotal(nullable:false,min:0.0)
         itensVenda(nullable:false, validator:{val->!val.isEmpty()})
     }
+
+    static mapping = {
+        id generator:'sequence', params:[sequence:'sequence_venda']
+    }
 }

@@ -22,18 +22,7 @@ function ajaxPost(element, url, nomeDivUpdate, bloquear, tentativa) {
         contentType: contentType,
         processData: processData,
         timeout: 0, //Set your timeout value in milliseconds or 0 for unlimited
-        beforeSend: function() {
-            if (bloquear) {
-                divBlock.prependTo( divUpdate );
-                $(form).find(":input[type=submit]:enabled,button[type=button]:enabled").attr("disableAjax",true).attr('disabled',true);
-                $(form).bind('keydown', function(event) {
-                    if (event.which === 13) {
-                        event.preventDefault();
-                        return false;
-                    }
-                });
-            }
-        },
+        
         success: function(res){
             divUpdate.html(res);
         },

@@ -32,7 +32,7 @@ gestao_vendas
 			
 			<g:form action="autenticar">
 				<div class="mb-3">
-					<label for="usuario" class="form-label">Usuario oi</label>
+					<label for="usuario" class="form-label">Usuario</label>
 					<input type="text" class="form-control" id="usuario" aria-describedby="emailHelp" name="usuario">
 				</div>
 				<div class="mb-3">

@@ -14,7 +14,6 @@ class ProdutoController {
 
     def listProduto(int length, int start){
 
-        println "teste list"
         params.max = length;
         params.offset = start;
         int iCol=0;
@@ -48,14 +47,11 @@ class ProdutoController {
     }
 
     def create() {
-
-        println "teste create"
         [produto: new Produto(params)]
     }
 
     def save() {
 
-        println "teste save"
         def produto = new Produto(params)
         if (!produto.save(flush: true)) {
             render(view: "create", model: [produto: produto])
@@ -127,7 +123,6 @@ class ProdutoController {
 
     def carregarValorUltimoProduto(){
 
-        println "eae"
         //le os valores atuais preenchidos na view e preenche um objeto chamado produto
         def produto = new Produto(params) 
 
