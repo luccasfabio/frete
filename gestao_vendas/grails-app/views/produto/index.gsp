@@ -2,12 +2,11 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <asset:javascript src="jquery.min.js"/>
-        <asset:javascript src="jquery-ui.min.js"/>
-        <asset:javascript src="jquery.dataTables.min.js"/>
         <g:set var="entityName" value="${message(code: 'produto.label', default: 'Produto')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" type="text/css" />
+        <asset:javascript src="jquery.min.js"/>
+        <asset:javascript src="jquery.dataTables.min.js"/>
     </head>
     <body>
         <a href="#list-produto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -22,7 +21,8 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <div class="m-4">
+            
+            <div class="m-3">
                 <table id="table-produto">
                     <thead>
                         <tr>
@@ -30,47 +30,41 @@
                                 Ações
                             </th>
                             <th>
-                                <g:message code="produto.nome.label" default="nome" />
+                                <g:message code="produto.nome.label" default="Nome" />
                             </th>
                             <th>
-                                <g:message code="produto.valorPadrao.label" default="valorPadrao" />
+                                <g:message code="produto.valorPadrao.label" default="Valor Padrão" />
                             </th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
-
-            <asset:javascript src="agfrete.js"/>
-            <asset:javascript src="jquery.dataTables.min.js"/>
-            <script type="text/javascript">
-            jQuery(function ($) {
-                gerarDefaultDataTable('${controllerName}')
-
-                var oTable1 = 
-                $('#table-produto').DataTable( {
-                    "processing": true,
-                    "serverSide": false,
-                    "ajax": "${createLink(controller:"produto", action:"listProduto")}",
-                    "columns": [
-                        {
-                            "orderable": false,
-                            "data": null,
-                            "render": function (data, type, full, meta) { return '<a href="${createLink(controller:'produto', action:'edit')}/'+ data.id +'" >Editar</a>'; }
-                        },
-                        {
-                            "data": "nome"
-                        },
-                        {
-                            "data": "valorPadrao"
-                        }
-                    ],
-                    "language": {
-                        "url": "${assetPath(src: 'portuguese-brasil-datatable.json')}"
+        
+        <script type="text/javascript">
+            $('#table-produto').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "responsive": true,
+                "ajax": "${createLink(controller:"produto", action:"listProduto")}",
+                "columns": [
+                    {
+                        "orderable": false,
+                        "data": null,
+                        "render": function (data, type, full, meta) { return '<a href="${createLink(controller:'produto', action:'edit')}/'+ data.id +'" >Editar</a>'; }
+                    },
+                    {
+                        "data": "nome"
+                    },
+                    {
+                        "data": "valorPadrao"
                     }
-                })
-                adicionarFuncoesDT(oTable1)
-            })
-            </script>
+                    
+                ],
+                "language": {
+                    "url": "${assetPath(src: 'portuguese-brasil-datatable.json')}"
+                }
+            } );
+        </script>
     </body>
 </html>

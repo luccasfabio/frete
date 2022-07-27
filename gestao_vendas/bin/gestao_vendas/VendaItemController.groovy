@@ -35,11 +35,10 @@ class VendaItemController {
         def recordsTotal = VendaItem.count();
         def recordsFiltered = dados.totalCount;
 
-        //CODIGO ABAIXO PERMITE A PESONALIZAÇÃO DO RETORNO
-        // dados = dados.collect {it -> return [
-        //     id : it.id,
-        //     nome : it.nome
-        // ]}
+        dados = dados.collect {it -> return [
+            id : it.id,
+            produto: it.produto?.nome
+        ]}
         
         render contentType: "text/json", text: ["draw":params.draw,"recordsTotal":recordsTotal,"recordsFiltered":recordsFiltered,"data": dados ] as JSON;
     }

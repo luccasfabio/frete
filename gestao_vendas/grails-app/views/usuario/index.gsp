@@ -4,8 +4,9 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
-
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" type="text/css" />
+        <asset:javascript src="jquery.min.js"/>
+        <asset:javascript src="jquery.dataTables.min.js"/>
     </head>
     <body>
         <a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -40,34 +41,31 @@
             </table>
         </div>
 
-        <content tag="jsEspecifico">
-            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-            <script>
-                $('#table-usuario').DataTable( {
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": "${createLink(controller:"usuario", action:"listUsuario")}",
-                    "columns": [
-                        {
-                            "orderable": false,
-                            "data": null,
-                            "render": function (data, type, full, meta) { return '<a href="${createLink(controller:'usuario', action:'edit')}/'+ data.id +'" >Editar</a>'; }
-                        },
-                        {
-                            "data": "usuario"
-                        },
-                        {
-                            "data": "nome"
-                        },
-                        {
-                            "data": "senha"
-                        }
-                    ],
-                    "language": {
-                        "url": "${assetPath(src: 'portuguese-brasil-datatable.json')}"
+        <script type="text/javascript">
+            $('#table-usuario').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "${createLink(controller:"usuario", action:"listUsuario")}",
+                "columns": [
+                    {
+                        "orderable": false,
+                        "data": null,
+                        "render": function (data, type, full, meta) { return '<a href="${createLink(controller:'usuario', action:'edit')}/'+ data.id +'" >Editar</a>'; }
+                    },
+                    {
+                        "data": "usuario"
+                    },
+                    {
+                        "data": "nome"
+                    },
+                    {
+                        "data": "senha"
                     }
-                } );
-            </script>
-	    </content>
+                ],
+                "language": {
+                    "url": "${assetPath(src: 'portuguese-brasil-datatable.json')}"
+                }
+            } );
+        </script>
     </body>
 </html>

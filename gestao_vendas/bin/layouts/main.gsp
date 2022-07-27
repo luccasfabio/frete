@@ -69,6 +69,8 @@
 <!-- AJAX Post -->
 <script src="${resource(dir: 'js', file: 'ajaxPost.js')}"></script>
 
+<script src="${resource(dir: 'js', file: 'ajaxPost.js')}"></script>
+
 <script src="${resource(dir: 'js', file: 'formatacao.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.gritter.min.js')}"></script>
