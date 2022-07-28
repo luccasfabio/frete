@@ -36,6 +36,7 @@ class VendaController {
         def recordsFiltered = dados.totalCount;
 
         dados = dados.collect {it -> return [
+            id: it.id,
             cliente : it.cliente?.nome,
             valorTotal : it.valorTotal
         ]}
@@ -88,6 +89,7 @@ class VendaController {
             }
         }
 
+        venda.itensVenda.clear()
         venda.properties = params
 
         if (!venda.save(flush: true)) {
@@ -139,7 +141,10 @@ class VendaController {
     }
 
     def carregarValores(int indice){
+
         def venda = new Venda(params)
+
+        if(venda.itensVenda.get(indice).produto != null) {
 
         def valorUnitario = venda.itensVenda.get(indice).produto.valorPadrao
         def quantidade = venda.itensVenda.get(indice).quantidade
@@ -153,6 +158,17 @@ class VendaController {
         venda.valorTotal = valorTotal
 
         render(template:"itensVenda", model:[venda:venda,attValorTotal:true])
+        } else {
+            def valorUnitario = 0
+            def quantidade = 0
+            def desconto = 0
+            def valorTotal = 0
+            venda.itensVenda.get(indice).valorUnitario = valorUnitario
+            venda.itensVenda.get(indice).valorTotalItem = valorUnitario*quantidade - desconto
+            venda.itensVenda.each{valorTotal = valorTotal + it.valorTotalItem}
+            venda.valorTotal = valorTotal
+            render(template:"itensVenda", model:[venda:venda,attValorTotal:true])
+        }
     }
 
     def atualizarValorTotal(){

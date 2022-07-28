@@ -13,7 +13,6 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="list-vendaItem" class="content" role="main">
@@ -29,10 +28,22 @@
                             Ações
                         </th>
                         <th>
-                            <g:message code="vendaItem.id.label" default="ID" />
+                            <g:message code="vendaItem.id.label" default="ID da Venda" />
                         </th>
                         <th>
-                            <g:message code="vendaItem.produto.label" default="produto" />
+                            <g:message code="vendaItem.produto.label" default="Produto" />
+                        </th>
+                        <th>
+                            <g:message code="vendaItem.produto.valorUnitario" default="Valor Unitario" />
+                        </th>
+                        <th>
+                            <g:message code="vendaItem.quantidade" default="Quantidade" />
+                        </th>
+                        <th>
+                            <g:message code="vendaItem.desconto" default="Desconto" />
+                        </th>
+                        <th>
+                            <g:message code="vendaItem.desconto" default="Valor Total Item" />
                         </th>
                     </tr>
                 </thead>
@@ -55,6 +66,18 @@
                     },
                     {
                         "data": "produto"
+                    },
+                    {
+                        "data": "valorUnitario"
+                    },
+                    {
+                        "data": "quantidade"
+                    },
+                    {
+                        "data": "desconto"
+                    },
+                    {
+                        "data": "valorTotalItem"
                     }
                 ],
                 "language": {

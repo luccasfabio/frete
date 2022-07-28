@@ -36,8 +36,12 @@ class VendaItemController {
         def recordsFiltered = dados.totalCount;
 
         dados = dados.collect {it -> return [
-            id : it.id,
-            produto: it.produto?.nome
+            id : it.venda?.id,
+            produto: it.produto?.nome,
+            valorUnitario: it.valorUnitario,
+            quantidade: it.quantidade,
+            desconto: it.desconto,
+            valorTotalItem: it.valorTotalItem
         ]}
         
         render contentType: "text/json", text: ["draw":params.draw,"recordsTotal":recordsTotal,"recordsFiltered":recordsFiltered,"data": dados ] as JSON;

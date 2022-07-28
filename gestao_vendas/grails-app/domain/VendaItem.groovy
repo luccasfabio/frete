@@ -7,12 +7,13 @@ class VendaItem {
     BigDecimal quantidade = 1
     BigDecimal desconto = 0
     BigDecimal valorTotalItem = 0
+    Venda venda
 
     static mapping = {
         id generator:'sequence', params:[sequence:'sequence_vendaItem']
     }
 
-    static belongsTo = Venda
+    static belongsTo = [venda:Venda]
     
     static constraints = {
         produto(nullable:false)
